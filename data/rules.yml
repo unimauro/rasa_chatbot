@@ -1,0 +1,90 @@
+version: "2.0"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action : utter_submit
+  - action: action_restart
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule : say 'Don't submit' anytime the user challenges
+  steps:
+  - intent:  deny
+  - action : utter_goodbye
+  - action : action_restart
+- rule : say 'thank you' anytime the user challenges
+  steps:
+  - intent : greet_Thanks
+  - action : utter_goodbye
+  - action : action_restart
+
+
+
+#- rule: Activate form to save in database
+#  steps:
+#  - intent: request_appointment
+#  - action: action_submit
+#  - active_loop: action_submit
+#
+#- rule: Submit form to save in database
+#  condition:
+#  - active_loop: action_submit
+#  steps:
+#  - action: action_submit
+#  - active_loop: null
+#  - slot_was_set:
+#    - requested_slot: null
+#  - action: action_restart
+
+
+#
+#
+#- rule: Activate form to save in database rule2
+#  steps:
+#  - intent: request_appointment
+#  - action: action_submit
+#  - active_loop: action_submit
+#
+#- rule: Submit form to save in database rule2
+#  condition:
+#  - active_loop: action_submit
+#  steps:
+#  - action: action_submit
+#  - active_loop: null
+#  - slot_was_set:
+#    - requested_slot: null
+#  - action: action_restart
+##
+##
+##
+##
+#- rule: Activate form not to save in database
+#  steps:
+#  - intent: request_appointment
+#  - action: action_submit
+#  - active_loop: action_submit
+#
+#- rule: Submit form not to save in database
+#  condition:
+#  - active_loop: action_submit
+#  steps:
+#  - action: action_submit
+#  - active_loop: null
+#  - slot_was_set:
+#    - requested_slot: null
+#  - action: action_restart
+
+
+
+- rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  steps:
+  - intent: mood_unhappy
+  - action: utter_default
+  - action : action_restart
+

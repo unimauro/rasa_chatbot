@@ -1,0 +1,83 @@
+version: "2.0"
+
+stories:
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  #- action: utter_greet
+  #- action: utter_appointment
+  #- action: utter_ask_full_name
+  - action : utter_welcome
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: full_name
+  - slot_was_set:
+    - name: vincent-mcvincent
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: 55
+  - slot_was_set:
+    - requested_slot: gender
+  - slot_was_set:
+    - gender: male
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - location: hyderabad
+  - slot_was_set:
+    - requested_slot: contact
+  - slot_was_set:
+    - contact: re.search(r'^(\d{3}--\d{3}--\d{4})$',num)
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_slots_values
+  - intent: affirm
+  - action: action_submit
+  - action: action_restart
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  #- action: utter_greet
+  #- action: utter_appointment
+  #- action: utter_ask_full_name
+  - action : utter_welcome
+  - action: name_form
+  - active_loop: name_form
+  - slot_was_set:
+    - requested_slot: full_name
+  - slot_was_set:
+    - name: vincent-mcvincent
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: 55
+  - slot_was_set:
+    - requested_slot: gender
+  - slot_was_set:
+    - gender: male
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - location: hyderabad
+  - slot_was_set:
+    - requested_slot: contact
+  - slot_was_set:
+    - contact: 7894561230
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_slots_values
+  - intent: deny
+  - action: utter_goodbye
+  - action: action_restart
+
+
+- story: if bot didnt understand
+  steps:
+  - intent: mood_unhappy
+  - action: utter_default
+  - action: action_restart

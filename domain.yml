@@ -1,0 +1,84 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+intents:
+- greet
+- deny
+- request_appointment
+- goodbye
+- affirm
+- mood_great
+- mood_unhappy
+- bot_challenge
+
+forms:
+  name_form:
+    name:
+    - type: from_text
+    age:
+    - type: from_text
+    gender:
+    - type: from_text
+    location:
+    - type: from_text
+    contact:
+    - type: from_text
+slots:
+  name:
+    type: text
+  age:
+    type: text
+  gender:
+    type: text
+  location:
+    type: text
+  contact:
+    type: text
+
+responses:
+  utter_greet:
+  - text: Hi Welcome to Medicover Hospital
+  utter_appointment:
+  - text: To book your appointment please fill the details give below.
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_thank:
+  - text: thank you
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Medicover Hospital.
+  utter_ask_full_name:
+  - text: May i know your full name please?
+  utter_ask_age:
+  - text: May i know your age please?
+  utter_ask_gender:
+  - text: May i know your gender please?
+  utter_ask_location:
+  - text: May I know your location please?
+  utter_ask_contact:
+  - text: May I know your contact please?
+  utter_submit:
+  - text: Ok. Thanks!
+  utter_welcome:
+    - text : Hi Welcome to Medicover Hospital,To book your appointment please fill the details asked.May i know your full name please?
+  utter_default:
+  - text: I am sorry,I didn't get that. Could you please repeat your query?
+  - text: I am not sure what you are aiming for.
+  utter_slots_values:
+  - text: thankyou {name} do you want to save these details ?
+
+actions:
+- utter_greet
+- utter_slots_values
+- utter_submit
+- utter_ask_full_name
+- action_ask_details
+- action_submit
